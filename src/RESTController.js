@@ -123,7 +123,10 @@ const RESTController = {
       };
 
       headers = headers || {};
-      headers['Content-Type'] = 'text/plain'; // Avoid pre-flight
+      headers['Content-Type'] = 'application/json'; // Avoid pre-flight
+      headers['x-parse-application-id'] = CoreManager.get('APPLICATION_ID');
+      headers['x-parse-master-key'] = CoreManager.get('MASTER_KEY');
+
       if (CoreManager.get('IS_NODE')) {
         headers['User-Agent'] = 'Parse/' + CoreManager.get('VERSION') +
           ' (NodeJS ' + process.versions.node + ')';
